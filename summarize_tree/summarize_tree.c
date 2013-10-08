@@ -19,12 +19,14 @@ bool is_dir(const char* path) {
 
   struct stat buf;
   int dir_or_not = stat(path, &buf);
+  bool result = false;
+
   if(dir_or_not == 0) {
-     S_ISDIR(buf.st_mode);
+    result = S_ISDIR(buf.st_mode);
   } else {
     printf("%s\n", "The file does not exist.");
   } 
-  return 0;   
+  return result;   
 }
 
 /* 
@@ -59,9 +61,8 @@ void process_directory(const char* path) {
     }
   }
 
-  chdir("..");
-
   closedir(dir);
+  chdir("..");
 }
 
 void process_file(const char* path) {
