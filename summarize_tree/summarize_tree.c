@@ -16,6 +16,14 @@ bool is_dir(const char* path) {
    * return value from stat in case there is a problem, e.g., maybe the
    * the file doesn't actually exist.
    */
+
+  struct stat buf;
+  if(int stat(path, &buf) == 0) {
+     S_ISDIR(buf.st_mode);
+  } else {
+    printf("%s\n", "The file does not exist.");
+  } 
+  return 0;   
 }
 
 /* 
