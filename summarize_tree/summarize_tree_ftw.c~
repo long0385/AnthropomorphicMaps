@@ -1,0 +1,23 @@
+#include<ftw.h>
+
+static int callback(const char *fpath, const struct stat *sb, int typeflag) {
+  int num_dirs = 0;
+  int num_files
+  int dir_or_not = stat(fpath, sb);
+  if(dir_or_not == 0) {
+    if(typeflag == FTW_D) {
+      num_dirs++;
+    } else {
+      num_files++;
+    }
+  }
+
+}
+
+int main(int argc, char** argv) {
+  /* Check arguments & set things up */
+
+  ftw(argv[1], callback, 16);
+
+  /* Print out the results */
+}
